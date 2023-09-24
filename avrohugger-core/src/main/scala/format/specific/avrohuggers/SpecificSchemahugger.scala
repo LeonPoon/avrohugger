@@ -41,7 +41,8 @@ object SpecificSchemahugger extends Schemahugger {
           schema,
           maybeFlags,
           schemaStore,
-          typeMatcher)
+          typeMatcher,
+          classStore)
         List(caseClassDef, companionDef)
       case FIXED =>
         val caseClassDef = SpecificCaseClassTree.toFixedDef(
@@ -56,7 +57,8 @@ object SpecificSchemahugger extends Schemahugger {
           schema,
           maybeFlags,
           schemaStore,
-          typeMatcher)
+          typeMatcher,
+          classStore)
         List(caseClassDef, companionDef)
       case _ => sys.error("Only RECORD or FIXED can be toplevel definitions")
 

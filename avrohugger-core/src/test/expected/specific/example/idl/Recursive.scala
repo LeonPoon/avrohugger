@@ -39,4 +39,7 @@ final case class Recursive(var name: String, var recursive: Option[example.idl.R
 
 object Recursive {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Recursive\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"recursive\",\"type\":[\"null\",\"Recursive\"]}]}")
+  object types {
+    type recursive = Option[example.idl.Recursive]
+  }
 }

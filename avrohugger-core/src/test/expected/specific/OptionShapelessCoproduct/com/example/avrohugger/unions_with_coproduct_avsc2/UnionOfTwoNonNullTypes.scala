@@ -29,4 +29,7 @@ final case class UnionOfTwoNonNullTypes(var r4: Int :+: String :+: CNil) extends
 
 object UnionOfTwoNonNullTypes {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UnionOfTwoNonNullTypes\",\"namespace\":\"com.example.avrohugger.unions_with_coproduct_avsc2\",\"fields\":[{\"name\":\"r4\",\"type\":[\"int\",\"string\"]}]}")
+  object types {
+    type r4 = Int :+: String :+: CNil
+  }
 }

@@ -111,6 +111,9 @@ final case class ShouldRenderAsOption(var value: Option[example.idl.Event1]) ext
 
 object ShouldRenderAsOption {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOption\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]}]}]}")
+  object types {
+    type value = Option[example.idl.Event1]
+  }
 }
 
 final case class ShouldRenderAsOption2(var value: Option[example.idl.Event1]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -143,6 +146,9 @@ final case class ShouldRenderAsOption2(var value: Option[example.idl.Event1]) ex
 
 object ShouldRenderAsOption2 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOption2\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},\"null\"]}]}")
+  object types {
+    type value = Option[example.idl.Event1]
+  }
 }
 
 final case class ShouldRenderAsOptionEither(var value: Option[Either[example.idl.Event1, example.idl.Event2]]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -175,6 +181,9 @@ final case class ShouldRenderAsOptionEither(var value: Option[Either[example.idl
 
 object ShouldRenderAsOptionEither {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionEither\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]}]}]}")
+  object types {
+    type value = Option[Either[example.idl.Event1, example.idl.Event2]]
+  }
 }
 
 final case class ShouldRenderAsOptionEither2(var value: Option[Either[example.idl.Event1, example.idl.Event2]]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -207,6 +216,9 @@ final case class ShouldRenderAsOptionEither2(var value: Option[Either[example.id
 
 object ShouldRenderAsOptionEither2 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionEither2\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},\"null\",{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]}]}]}")
+  object types {
+    type value = Option[Either[example.idl.Event1, example.idl.Event2]]
+  }
 }
 
 final case class ShouldRenderAsOptionEither3(var value: Option[Either[example.idl.Event1, example.idl.Event2]]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -239,6 +251,9 @@ final case class ShouldRenderAsOptionEither3(var value: Option[Either[example.id
 
 object ShouldRenderAsOptionEither3 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionEither3\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},\"null\"]}]}")
+  object types {
+    type value = Option[Either[example.idl.Event1, example.idl.Event2]]
+  }
 }
 
 final case class ShouldRenderAsOptionCoproduct(var value: Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -271,6 +286,9 @@ final case class ShouldRenderAsOptionCoproduct(var value: Option[example.idl.Eve
 
 object ShouldRenderAsOptionCoproduct {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionCoproduct\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event3\",\"fields\":[]}]}]}")
+  object types {
+    type value = Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]
+  }
 }
 
 final case class ShouldRenderAsOptionCoproduct2(var value: Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -303,6 +321,9 @@ final case class ShouldRenderAsOptionCoproduct2(var value: Option[example.idl.Ev
 
 object ShouldRenderAsOptionCoproduct2 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionCoproduct2\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event3\",\"fields\":[]},\"null\"]}]}")
+  object types {
+    type value = Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]
+  }
 }
 
 final case class ShouldRenderAsOptionCoproduct3(var value: Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -335,6 +356,9 @@ final case class ShouldRenderAsOptionCoproduct3(var value: Option[example.idl.Ev
 
 object ShouldRenderAsOptionCoproduct3 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsOptionCoproduct3\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},\"null\",{\"type\":\"record\",\"name\":\"Event3\",\"fields\":[]}]}]}")
+  object types {
+    type value = Option[example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: CNil]
+  }
 }
 
 final case class ShouldRenderAsEither(var value: Either[example.idl.Event1, example.idl.Event2]) extends org.apache.avro.specific.SpecificRecordBase {
@@ -361,6 +385,9 @@ final case class ShouldRenderAsEither(var value: Either[example.idl.Event1, exam
 
 object ShouldRenderAsEither {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsEither\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]}]}]}")
+  object types {
+    type value = Either[example.idl.Event1, example.idl.Event2]
+  }
 }
 
 final case class ShouldRenderAsCoproduct(var value: example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: example.idl.Event4 :+: CNil) extends org.apache.avro.specific.SpecificRecordBase {
@@ -387,6 +414,9 @@ final case class ShouldRenderAsCoproduct(var value: example.idl.Event1 :+: examp
 
 object ShouldRenderAsCoproduct {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsCoproduct\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event3\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event4\",\"fields\":[]}]}]}")
+  object types {
+    type value = example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: example.idl.Event4 :+: CNil
+  }
 }
 
 final case class ShouldRenderAsCoproduct2(var value: example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: example.idl.Event4 :+: CNil) extends org.apache.avro.specific.SpecificRecordBase {
@@ -413,4 +443,7 @@ final case class ShouldRenderAsCoproduct2(var value: example.idl.Event1 :+: exam
 
 object ShouldRenderAsCoproduct2 {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ShouldRenderAsCoproduct2\",\"namespace\":\"example.idl\",\"fields\":[{\"name\":\"value\",\"type\":[{\"type\":\"record\",\"name\":\"Event1\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event2\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event3\",\"fields\":[]},{\"type\":\"record\",\"name\":\"Event4\",\"fields\":[]}]}]}")
+  object types {
+    type value = example.idl.Event1 :+: example.idl.Event2 :+: example.idl.Event3 :+: example.idl.Event4 :+: CNil
+  }
 }

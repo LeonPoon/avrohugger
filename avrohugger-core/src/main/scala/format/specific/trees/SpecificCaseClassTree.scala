@@ -4,6 +4,7 @@ package specific
 package trees
 
 import avrohugger.format.specific.methods._
+import avrohugger.format.specific.trees.SpecificObjectTree.TypesObjectName
 import avrohugger.generators.ScalaDocGenerator
 import avrohugger.matchers.{DefaultParamMatcher, DefaultValueMatcher, TypeMatcher}
 import avrohugger.stores._
@@ -34,7 +35,13 @@ object SpecificCaseClassTree {
     // generate list of constructor parameters
     val params: List[ValDef] = avroFields.map { f =>
       val fieldName = FieldRenamer.rename(f.name)
-      val fieldType = typeMatcher.toScalaType(classStore, namespace, f.schema)
+      val fieldType = f.schema() match {
+
+        // We probably want to use our typevar definitions but that will hide lots of type info in IDEs' auto-complete prompts, so we comment out below for now:
+//        case fieldSchema if fieldSchema.isUnion => TYPE_REF(typeMatcher.toScalaType(classStore, namespace, schema) DOT TypesObjectName DOT FieldRenamer.rename(f.name()))
+
+        case fieldSchema => typeMatcher.toScalaType(classStore, namespace, fieldSchema)
+      }
       val defaultValue = DefaultValueMatcher.getDefaultValue(
         classStore,
         namespace,

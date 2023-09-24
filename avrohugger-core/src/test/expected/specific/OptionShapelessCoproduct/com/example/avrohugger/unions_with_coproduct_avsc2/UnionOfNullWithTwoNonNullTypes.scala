@@ -35,4 +35,7 @@ final case class UnionOfNullWithTwoNonNullTypes(var r5: Option[Int :+: String :+
 
 object UnionOfNullWithTwoNonNullTypes {
   val SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UnionOfNullWithTwoNonNullTypes\",\"namespace\":\"com.example.avrohugger.unions_with_coproduct_avsc2\",\"fields\":[{\"name\":\"r5\",\"type\":[\"null\",\"int\",\"string\"]}]}")
+  object types {
+    type r5 = Option[Int :+: String :+: CNil]
+  }
 }

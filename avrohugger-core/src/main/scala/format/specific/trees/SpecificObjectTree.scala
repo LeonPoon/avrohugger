@@ -5,11 +5,12 @@ package trees
 
 import avrohugger.matchers.TypeMatcher
 import avrohugger.matchers.custom.CustomTypeMatcher
-import avrohugger.stores.SchemaStore
+import avrohugger.stores.{ClassStore, SchemaStore}
 import avrohugger.types._
 import org.apache.avro.{LogicalTypes, Protocol, Schema}
 import treehugger.forest._
 import definitions._
+import treehugger.forest
 import treehuggerDSL._
 
 import scala.jdk.CollectionConverters._
@@ -17,6 +18,7 @@ import scala.jdk.CollectionConverters._
 // only companions, so no doc generation is required here
 object SpecificObjectTree {
 
+  val TypesObjectName: String = "types"
   val DecimalConversion = RootClass.newClass("org.apache.avro.Conversions.DecimalConversion")
   val decimalConversionDef = VAL(REF("decimalConversion")) := NEW(DecimalConversion)
 
@@ -45,7 +47,8 @@ object SpecificObjectTree {
     schema: Schema,
     maybeFlags: Option[List[Long]],
     schemaStore: SchemaStore,
-    typeMatcher: TypeMatcher) = {
+    typeMatcher: TypeMatcher,
+    classStore: ClassStore) = {
     val ParserClass = RootClass.newClass("org.apache.avro.Schema.Parser")
     val objectDef = maybeFlags match {
       case Some(flags) => OBJECTDEF(schema.getName).withFlags(flags:_*)
@@ -101,11 +104,20 @@ object SpecificObjectTree {
         case None => objectDef := BLOCK(schemaDef, externalReader, externalWriter, defCtorDefault)
       }
       case Schema.Type.RECORD =>
-        if (schemaContainsDecimal(schema, schemaStore, typeMatcher)) objectDef := BLOCK(schemaDef, decimalConversionDef)
-        else objectDef := BLOCK(schemaDef)
+        objectDef := BLOCK(Seq(
+          Some(schemaDef),
+          if (schemaContainsDecimal(schema, schemaStore, typeMatcher)) Some(decimalConversionDef) else None,
+          typesObjectForFields(OBJECTDEF(TypesObjectName), schema, typeMatcher, classStore)
+        ).flatten)
       case _ => sys.error("Only FIXED and RECORD types can generate companion objects")
     }
   }
+
+  def typesObjectForFields(typesObjectDef: ModuleDefStart, schema: Schema, typeMatcher: TypeMatcher, classStore: ClassStore): Option[Tree] =
+    Some(schema.getFields.asScala.map(f => (f, f.schema())).collect {
+      case (field, fieldSchema) if fieldSchema.isUnion =>
+        TYPEVAR(FieldRenamer.rename(field.name())) := typeMatcher.toScalaType(classStore, None, fieldSchema)
+    }).filter(_.nonEmpty).map(typesObjectDef := BLOCK(_))
 
   // union acts as a blackbox, fields are not seen on root level, unpack is required
   private def collectUnionFields(sc: Schema): Iterable[Schema] = {
